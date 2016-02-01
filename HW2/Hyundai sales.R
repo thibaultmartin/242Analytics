@@ -33,5 +33,8 @@ test$Month<-factor(test$Month)
 predictions <-predict(fit3,test[,-c(2,3)],type="response")
 print(predictions)
 
-Rsquare=cor(predictions,test$ElantraSales)^2
-print(Rsquare)
+#Computing the R_square
+SSE = sum((test$ElantraSales - predictions)^2)
+SST = sum((test$ElantraSales - mean(train$ElantraSales))^2)
+print(1 - SSE/SST)
+
